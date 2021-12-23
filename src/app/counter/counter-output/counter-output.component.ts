@@ -11,17 +11,23 @@ import { counterState } from '../state/counter.state';
 // export class CounterOutputComponent implements OnInit, OnDestroy {
 export class CounterOutputComponent implements OnInit {
 
-  // counter: number | undefined;
+  counter: number | undefined;
 
-  counter$!: Observable<{ counter: number }>;
+  // counter$!: Observable<{ counter: number }>;
 
   // counterSubscription: Subscription | undefined;
 
   constructor(private store: Store<{counter: counterState}>) { }
 
   ngOnInit(): void {
-    this.counter$ = this.store.select('counter');
-    }
+    this.store.select('counter').subscribe( (data) => {
+      this.counter = data.counter;
+    })
+  }
+
+  // ngOnInit(): void {
+  //   this.counter$ = this.store.select('counter');
+  //   }
 
 
   // ngOnInit(): void {

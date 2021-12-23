@@ -3,5 +3,5 @@ export interface counterState {
 }
 
 export const initialState: counterState = {
-  counter: 5
+  counter: 0
 }
