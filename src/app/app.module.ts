@@ -16,6 +16,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { appReducer } from './store/app.state';
 import { AddPostsComponent } from './posts/add-posts/add-posts.component';
+import { EditPostsComponent } from './posts/edit-posts/edit-posts.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AddPostsComponent } from './posts/add-posts/add-posts.component';
     HomeComponent,
     HeaderComponent,
     PostsListComponent,
-    AddPostsComponent
+    AddPostsComponent,
+    EditPostsComponent
   ],
   imports: [
     BrowserModule,
