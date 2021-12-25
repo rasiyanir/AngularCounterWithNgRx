@@ -21,7 +21,7 @@ import { appReducer } from './store/app.state';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(appReducer),
+    StoreModule.forRoot({}),
     FormsModule,
     StoreDevtoolsModule.instrument({
       logOnly: environment.production, // Restrict extension to log-only mode
