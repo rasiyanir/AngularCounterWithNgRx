@@ -25,4 +25,15 @@ export class PostService {
   addPost(post: Post): Observable<{ name: string}> {
     return this.http.post<{name: string}>(`https://ngrx-demo-authentication-default-rtdb.firebaseio.com/posts.json`, post);
   }
+
+  updatePost(post: Post){
+    const postData = {
+      [post.id]: { title: post.title, description: post.description},
+    };
+    return this.http.patch(`https://ngrx-demo-authentication-default-rtdb.firebaseio.com/posts.json`, postData);
+  }
+
+  deletePost(id: string){
+    return this.http.delete(`https://ngrx-demo-authentication-default-rtdb.firebaseio.com/posts/${id}.json`);
+  }
 }
