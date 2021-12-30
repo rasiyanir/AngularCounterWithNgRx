@@ -36,7 +36,7 @@ export class PostsEffects {
 
   postsRedirect$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(addPostSuccess),
+      ofType(...[addPostSuccess, updatePostSuccess]),
       tap((action) => {
           this.router.navigate(['posts']);
       })

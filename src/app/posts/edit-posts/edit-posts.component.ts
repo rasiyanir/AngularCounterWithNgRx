@@ -15,30 +15,40 @@ import { getPostById } from '../state/post.selector';
 })
 export class EditPostsComponent implements OnInit, OnDestroy {
 
-  post!: Post;
+  post!: Post | undefined | null;
   postForm!: FormGroup;
   postSubscription!: Subscription;
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>, private router: Router) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe( (params) => {
-      console.log(params.get('id'));
-      const id = params.get('id');
-      this.postSubscription = this.store.select(getPostById, { id }).subscribe( (data) => {
-          this.post = data;
-          this.createForm();
-      })
-    })
+    this.createForm();
+    this.store.select(getPostById).subscribe((post) => {
+      if(post){
+        this.post = post;
+        this.postForm.patchValue({
+          title: post?.title,
+          description: post?.description
+        })
+      }
+    });
+    // this.route.paramMap.subscribe( (params) => {
+    //   console.log(params.get('id'));
+    //   const id = params.get('id');
+    //   this.postSubscription = this.store.select(getPostById, { id }).subscribe( (data) => {
+    //       this.post = data;
+    //       this.createForm();
+    //   })
+    // })
   }
 
   createForm(){
     this.postForm = new FormGroup({
-      title: new FormControl(this.post?.title, [
+      title: new FormControl(null, [
         Validators.required,
         Validators.minLength(6),
       ]),
-      description: new FormControl(this.post?.description, [
+      description: new FormControl(null, [
         Validators.required,
         Validators.minLength(10),
       ])
@@ -87,7 +97,7 @@ export class EditPostsComponent implements OnInit, OnDestroy {
     }
 
     this.store.dispatch(updatePost({ post }));
-    this.router.navigate(['posts']);
+    // this.router.navigate(['posts']);
   }
 
 }
