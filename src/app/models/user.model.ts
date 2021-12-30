@@ -4,4 +4,9 @@ export class User {
   get expireDate(): any {
     return this.expirationdate;
   }
+
+  get userToken(): any {
+    //can check expiration date and then get refresh token here.
+    return this.token;
+  }
 }
