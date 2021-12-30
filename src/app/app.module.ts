@@ -15,6 +15,7 @@ import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loa
 import { appReducer } from './store/app.state';
 import { AuthEffects } from './auth/state/auth.effects';
 import { AuthTokenInterceptor } from './services/AuthToken.interceptor';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AuthTokenInterceptor } from './services/AuthToken.interceptor';
     StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([AuthEffects]),
     FormsModule,
+    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
