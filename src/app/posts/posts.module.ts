@@ -10,6 +10,7 @@ import { PostsListComponent } from "./posts-list/posts-list.component";
 import { PostReducer } from "./state/post.reducer";
 import { POST_STATE_NAME } from "./state/post.selector";
 import { PostsEffects } from "./state/posts.effects";
+import { SinglePostComponent } from './single-post/single-post.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
     PostsListComponent,
     AddPostsComponent,
     EditPostsComponent,
+    SinglePostComponent,
   ]
 })
 export class PostsModule {
